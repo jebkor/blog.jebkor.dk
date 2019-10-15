@@ -9,5 +9,20 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "directories": {
+    "doc": "docs"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "vuepress": "^1.2.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jebkor/blog.jebkor.dk.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jebkor/blog.jebkor.dk/issues"
+  },
+  "homepage": "https://github.com/jebkor/blog.jebkor.dk#readme"
 }
