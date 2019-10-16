@@ -154,6 +154,6 @@ export default {
 <style lang="scss">
 @import url('https://fonts.googleapis.com/css?family=IBM+Plex+Mono:300,400,500&display=swap');
 html, body {
-  font-family: 'IBM Plex Mono', sans-serif;
+  font-family: 'IBM Plex Mono', sans-serif !important;
 }
 </style>
