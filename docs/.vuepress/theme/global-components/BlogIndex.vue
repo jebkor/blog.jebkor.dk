@@ -8,7 +8,8 @@
             v-for="post in posts"
             v-if="post.frontmatter.year == year"
             :to="post.path"
-          >{{ post.frontmatter.title}}</router-link>
+          >{{ post.frontmatter.title}} <span class="post__date">{{ postDate(post.frontmatter.date) }}</span></router-link>
+          
         </li>
       </div>
     </ul>
@@ -19,14 +20,9 @@
   import {
     compact,
     flatMap,
-    uniq,
-    each,
-    get,
-    filter,
-    some,
-    includes,
-    sortBy
+    uniq
   } from "lodash";
+  import dayjs from 'dayjs'
 
   export default {
     name: "BlogIndex",
@@ -44,6 +40,10 @@
         return compact(uniq(flatMap(this.$site.pages, "frontmatter.year")))
           .sort()
           .reverse();
+      },
+
+      postDate(date) {
+        return dayjs(date).format('MMMM D, YYYY')
       }
     }
   };
@@ -90,6 +90,16 @@ ul.listing {
       -moz-animation: zomg 3s infinite;
       animation: zomg 3s infinite;
       text-decoration: none !important;
+    }
+
+    .post__date {
+      color: hsla(0, 0%, 0%, .4) !important;
+      cursor: default;
+      float: right;
+
+      &:hover {
+        color: hsla(0, 0%, 0%, .4) !important;
+      }
     }
   }
 }
