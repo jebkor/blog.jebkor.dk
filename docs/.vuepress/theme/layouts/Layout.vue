@@ -44,6 +44,8 @@
         #bottom
       />
     </Page>
+
+    <Footer />
   </div>
 </template>
 
@@ -52,10 +54,11 @@ import Home from '@theme/components/Home.vue'
 import Navbar from '@theme/components/Navbar.vue'
 import Page from '@theme/components/Page.vue'
 import Sidebar from '@theme/components/Sidebar.vue'
+import Footer from "@theme/components/Footer.vue"
 import { resolveSidebarItems } from '../util'
 
 export default {
-  components: { Home, Page, Sidebar, Navbar },
+  components: { Home, Page, Sidebar, Navbar, Footer },
 
   data () {
     return {
@@ -146,3 +149,11 @@ export default {
   }
 }
 </script>
+
+
+<style lang="scss">
+@import url('https://fonts.googleapis.com/css?family=IBM+Plex+Mono:300,400,500&display=swap');
+html, body {
+  font-family: 'IBM Plex Mono', sans-serif;
+}
+</style>

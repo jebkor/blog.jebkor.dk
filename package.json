@@ -13,8 +13,12 @@
   "directories": {
     "doc": "docs"
   },
-  "dependencies": {},
+  "dependencies": {
+    "lodash": "^4.17.15"
+  },
   "devDependencies": {
+    "sass": "^1.23.0",
+    "sass-loader": "^8.0.0",
     "vuepress": "^1.2.0"
   },
   "repository": {

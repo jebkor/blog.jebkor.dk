@@ -1,20 +1,33 @@
 <template>
   <div>
-    <div v-for="post in posts">
-      <h2>
-        <router-link :to="post.path">{{ post.frontmatter.title }}</router-link>
-      </h2>
-
-      <p>{{ post.frontmatter.description }}</p>
-
-      <p>
-        <router-link :to="post.path">Read more</router-link>
-      </p>
-    </div>
+    <ul class="listing">
+      <div v-for="year in years()" :key="year">
+        <h3 class="rainbow">{{ year }}</h3>
+        <li>
+          <router-link
+            v-for="post in posts"
+            v-if="post.frontmatter.year == year"
+            :to="post.path"
+          >{{ post.frontmatter.title}}</router-link>
+        </li>
+      </div>
+    </ul>
   </div>
 </template>
 
 <script>
+  import {
+    compact,
+    flatMap,
+    uniq,
+    each,
+    get,
+    filter,
+    some,
+    includes,
+    sortBy
+  } from "lodash";
+
   export default {
     name: "BlogIndex",
     computed: {
@@ -25,6 +38,81 @@
             (a, b) => new Date(b.frontmatter.date) - new Date(a.frontmatter.date)
           );
       }
+    },
+    methods: {
+      years() {
+        return compact(uniq(flatMap(this.$site.pages, "frontmatter.year")))
+          .sort()
+          .reverse();
+      }
     }
   };
 </script>
+
+<style lang="scss">
+.rainbow {
+  display: inline-block;
+  background-image: linear-gradient(
+    90deg,
+    #f79533 0%,
+    #f37055 15%,
+    #ef4e7b 30%,
+    #a166ab 44%,
+    #5073b8 58%,
+    #1098ad 72%,
+    #07b39b 86%,
+    #6dba82 100%
+  );
+  background-size: cover;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
+}
+
+ul.listing {
+  list-style: none;
+  margin-left: 0;
+
+  h3 {
+    color: #333;
+    font-weight: 900;
+    border-left: 8px solid #ff487a;
+    padding-left: 10px;
+  }
+
+  li a {
+    color: #333;
+    border-bottom: 1px dotted #ddd;
+
+    &:hover {
+      -webkit-animation: zomg 3s infinite;
+      -moz-animation: zomg 3s infinite;
+      animation: zomg 3s infinite;
+      text-decoration: none !important;
+    }
+  }
+}
+
+@keyframes zomg {
+  0%,
+  100% {
+    color: #7ccdea;
+  }
+  16% {
+    color: #0074d9;
+  }
+  32% {
+    color: #2ecc40;
+  }
+  48% {
+    color: #ffdc00;
+  }
+  64% {
+    color: #b10dc9;
+  }
+  80% {
+    color: #ff4136;
+  }
+}
+</style>
