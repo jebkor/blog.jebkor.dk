@@ -6,5 +6,13 @@ module.exports = {
           { text: 'Home', link: '/' },
           { text: 'Blog', link: '/blog/' }
       ]
-  }
+  },
+  plugins: [
+    [
+      '@vuepress/google-analytics',
+      {
+        'ga': 'UA-150276903-1'
+      }
+    ]
+  ]
 }
