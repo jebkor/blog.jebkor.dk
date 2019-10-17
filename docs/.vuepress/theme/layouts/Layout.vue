@@ -159,7 +159,8 @@ html, body {
 
 // Align the footer to the bottom "correctly"
 // When there are enough blog-posts, this alignment will happen automatically
-.page {
+.page,
+.home {
   min-height: 680px; // to align nicely to an iPhone X
 
   @media only screen and (min-width: 720px) {
