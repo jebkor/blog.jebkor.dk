@@ -156,4 +156,14 @@ export default {
 html, body {
   font-family: 'IBM Plex Mono', sans-serif !important;
 }
+
+// Align the footer to the bottom "correctly"
+// When there are enough blog-posts, this alignment will happen automatically
+.page {
+  min-height: 680px; // to align nicely to an iPhone X
+
+  @media only screen and (min-width: 720px) {
+    min-height: 85vh; // to align "nicely" to a small screened laptop
+  }
+}
 </style>

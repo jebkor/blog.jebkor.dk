@@ -22,8 +22,6 @@
 
 <style lang="scss" scoped>
 .blog__footer {
-  bottom: 0;
-  position: absolute;
   width: 100%;
   height: 100px;
   display: flex;
