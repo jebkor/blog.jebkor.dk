@@ -3,13 +3,9 @@
     <ul class="listing">
       <div v-for="year in years()" :key="year">
         <h3 class="rainbow">{{ year }}</h3>
-        <li>
-          <router-link
-            v-for="post in posts"
-            v-if="post.frontmatter.year == year"
-            :to="post.path"
-          >{{ post.frontmatter.title}} <span class="post__date">{{ postDate(post.frontmatter.date) }}</span></router-link>
-          
+        <li v-for="post in posts" :key="post" v-if="post.frontmatter.year == year">
+          <span class="post__date">{{ postDate(post.frontmatter.date) }}</span>
+          <router-link :to="post.path">{{ post.frontmatter.title}}</router-link>
         </li>
       </div>
     </ul>
@@ -17,12 +13,8 @@
 </template>
 
 <script>
-  import {
-    compact,
-    flatMap,
-    uniq
-  } from "lodash";
-  import dayjs from 'dayjs'
+  import { compact, flatMap, uniq } from "lodash";
+  import dayjs from "dayjs";
 
   export default {
     name: "BlogIndex",
@@ -43,7 +35,7 @@
       },
 
       postDate(date) {
-        return dayjs(date).format('MMMM D, YYYY')
+        return dayjs(date).format("MMMM D, YYYY");
       }
     }
   };
@@ -81,24 +73,29 @@ ul.listing {
     padding-left: 10px;
   }
 
-  li a {
-    color: #333;
-    border-bottom: 1px dotted #ddd;
-
-    &:hover {
-      -webkit-animation: zomg 3s infinite;
-      -moz-animation: zomg 3s infinite;
-      animation: zomg 3s infinite;
-      text-decoration: none !important;
+  li {
+    font-size: 15px;
+    list-style: none;
+    padding: 5px 3px;
+    margin: 0;
+    color: #777777;
+    
+    .post__date {
+      font-size: 13px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      float: right;
     }
 
-    .post__date {
-      color: hsla(0, 0%, 0%, .4) !important;
-      cursor: default;
-      float: right;
+    a {
+      color: #333;
+      border-bottom: 1px dotted #ddd;
 
       &:hover {
-        color: hsla(0, 0%, 0%, .4) !important;
+        -webkit-animation: zomg 3s infinite;
+        -moz-animation: zomg 3s infinite;
+        animation: zomg 3s infinite;
+        text-decoration: none !important;
       }
     }
   }
